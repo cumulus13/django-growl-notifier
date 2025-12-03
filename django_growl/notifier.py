@@ -1,6 +1,15 @@
+#!/usr/bin/env python3
+# File: django_growl/notifier.py
+# Author: Hadi Cahyadi <cumulus13@gmail.com>
+# Date: 2025-12-03
+# Description: 
+# License: MIT
+
 import gntp.notifier
 from django.conf import settings
 import logging
+import os
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -8,6 +17,20 @@ logger = logging.getLogger(__name__)
 class GrowlNotifier:
     def __init__(self):
         self.growl_hosts = getattr(settings, 'GROWL_HOSTS', [])
+        
+        # Setup default icon
+        default_icon_path = Path(__file__).parent / 'icon.png'
+        
+        # Check the icon from settings or use the default
+        custom_icon = getattr(settings, 'GROWL_ICON', None)
+        
+        if custom_icon and Path(custom_icon).is_file():
+            self.icon = Path(custom_icon).as_uri()
+        elif default_icon_path.is_file():
+            self.icon = default_icon_path.as_uri()
+        else:
+            self.icon = None  # No icon available
+            
         self.app_name = getattr(settings, 'GROWL_APP_NAME', 'Django Server')
         self.enabled = getattr(settings, 'GROWL_ENABLED', True)
         self.notifiers = []
@@ -50,20 +73,29 @@ class GrowlNotifier:
             except Exception as e:
                 logger.error(f"Failed to register Growl notifier for {host_config}: {e}")
     
-    def notify(self, title, message, note_type='Info', sticky=False):
+    def notify(self, title, message, note_type='Info', sticky=False, icon=None):
         """Send notification to all Growl hosts"""
         if not self.enabled:
             return
         
+        # Use the given or default icon of the instance
+        notification_icon = icon or self.icon
+        
         success_count = 0
         for item in self.notifiers:
             try:
-                item['notifier'].notify(
-                    noteType=note_type,
-                    title=title,
-                    description=message,
-                    sticky=sticky
-                )
+                kwargs = {
+                    'noteType': note_type,
+                    'title': title,
+                    'description': message,
+                    'sticky': sticky,
+                }
+                
+                # Add icon if available
+                if notification_icon:
+                    kwargs['icon'] = notification_icon
+                
+                item['notifier'].notify(**kwargs)
                 success_count += 1
                 logger.debug(f"Notification sent to {item['host']}:{item['port']}")
             except Exception as e:
@@ -84,16 +116,29 @@ def get_growl_notifier():
     return _growl_notifier
 
 
-def send_notification(title, message, note_type='Info', sticky=False):
+def send_notification(title, message, note_type='Info', sticky=False, icon=None):
     '''Helper function to send notifications
     
     Args:
         title: Notification title
         message: Message content
         note_type: Notification type ('Info', 'Error', 'Server Status')
-        sticky: Whether the notification still appears (True/False)
+        sticky: Whether the notification stays visible (True/False)
+        icon: Icon file path or URI (file://, http[s]://)
     '''
     notifier = get_growl_notifier()
-    notifier.notify(title, message, note_type, sticky)
-
     
+    # Cek icon priority: parameter > env > default
+    if icon is None:
+        # Cek dari environment variable
+        env_icon = os.getenv('GROWL_ICON')
+        if env_icon and Path(env_icon).is_file():
+            icon = Path(env_icon).as_uri()
+        # Jika tidak ada, akan gunakan default dari notifier instance
+    elif isinstance(icon, (str, Path)):
+        # Convert ke URI jika belum
+        icon_path = Path(icon)
+        if icon_path.is_file():
+            icon = icon_path.as_uri()
+    
+    notifier.notify(title, message, note_type, sticky, icon=icon)

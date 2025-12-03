@@ -36,3 +36,5 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+# Added entries (1 items)
+build.bat
