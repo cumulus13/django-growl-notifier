@@ -33,6 +33,7 @@ setup(
     install_requires=[
         "Django>=3.2",
         "gntp>=1.0.3",
+        "version_get"
     ],
     license="MIT"
 )
