@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-from version_get import VersionGet as vget
 import shutil
 
 with open("README.md", "r", encoding="utf-8") as fh:
