@@ -37,5 +37,10 @@ setup(
         "gntp>=1.0.3",
         "version_get"
     ],
-    license="MIT"
+    license="MIT",
+    project_urls={
+        "Bug Reports": f"https://github.com/cumulus13/django-growl-notifier/issues",
+        "Source": f"https://github.com/cumulus13/django-growl-notifier",
+        "Documentation": f"https://django-growl-notifier.readthedocs.io",
+    },
 )
