@@ -1,12 +1,15 @@
 from setuptools import setup, find_packages
 from version_get import VersionGet as vget
+import shutil
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+shutil.copy2("__version__.py", "django_growl/__version__.py")
+
 setup(
     name="django-growl-notifier",
-    version=vget().get(True),
+    version="1.0.10",
     author="Hadi Cahyadi",
     author_email="cumulus13@gmail.com",
     description="Send Django server notifications to Growl",
