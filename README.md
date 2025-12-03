@@ -29,7 +29,7 @@ pip install django-growl-notifier
 ### From source
 
 ```bash
-git clone https://github.com/yourusername/django-growl-notifier.git
+git clone https://github.com/cumulus13/django-growl-notifier.git
 cd django-growl-notifier
 pip install -e .
 ```
