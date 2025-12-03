@@ -2,3 +2,4 @@ include README.md
 include LICENSE
 recursive-include django_growl *.py
 recursive-include django_growl *.png
+recursive-include docs _build

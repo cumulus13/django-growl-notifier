@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+# File: django_growl/middleware.py
+# Author: Hadi Cahyadi <cumulus13@gmail.com>
+# Date: 2025-12-03
+# Description: 
+# License: MIT
+
 from django.conf import settings
 from .notifier import send_notification
 import traceback
