@@ -7,7 +7,7 @@
 [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://django-growl-notifier.readthedocs.io/)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/username/django-growl-notifier/master/django_growl/icon.png" alt="Logo" width="320">
+  <img src="https://raw.githubusercontent.com/cumulus13/django-growl-notifier/master/django_growl/icon.png" alt="Logo" width="320">
 </p>
 
 
