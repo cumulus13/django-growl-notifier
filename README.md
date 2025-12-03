@@ -463,6 +463,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - version_get
 - Growl for Windows, Growl (macOS), or compatible notification system use GNTP 
 
+## 📄 Documentation
+
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://django-growl-notifier.readthedocs.io/)
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
