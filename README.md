@@ -4,6 +4,12 @@
 [![Python Versions](https://img.shields.io/pypi/pyversions/django-growl-notifier.svg)](https://pypi.org/project/django-growl-notifier/)
 [![Django Versions](https://img.shields.io/badge/django-3.2%20%7C%204.0%20%7C%205.0-blue.svg)](https://www.djangoproject.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://django-growl-notifier.readthedocs.io/)
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/username/django-growl-notifier/main/django_growl/icon.png" alt="Logo" width="320">
+</p>
+
 
 Send Django development server notifications to Growl (or compatible notification systems like Growl for Windows, Snarl, or prowlnotify).
 
