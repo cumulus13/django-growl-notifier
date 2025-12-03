@@ -38,3 +38,6 @@ env/
 Thumbs.db
 # Added entries (1 items)
 build.bat
+
+# Added entries (1 items)
+*sublime*
