@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "django-growl-notifier"
-version = "1.0.12"
+version = "1.0.13"
 description = "Send Django server notifications to Growl"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -17,3 +17,9 @@ email = "cumulus13@gmail.com"
 
 [project.license]
 text = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/cumulus13/django-growl-notifier"
+Repository = "https://github.com/cumulus13/django-growl-notifier"
+Documentation = "https://django-growl-notifier.readthedocs.io"
+"Bug Tracker" = "https://github.com/cumulus13/django-growl-notifier/issues"
